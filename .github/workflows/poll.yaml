@@ -1,9 +1,9 @@
-name: Format
+name: grab screenshot
 
 on: push
 
 jobs:
-  format-code:
+  grab-screenshot:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
