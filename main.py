@@ -1,27 +1,12 @@
 #!/usr/bin/env python3
+import datetime
 import os
 
-from googleapiclient.discovery import build
-import urllib.request
-from dotenv import load_dotenv
+from get_thumbnail import get_thumbnail, get_required_env
 
-def get_required_env(name: str):
-    value = os.environ.get(name)
-    if value is None:
-        raise Exception(f"missing environment variable {name}")
-    return value
-
-
-load_dotenv()
-API_KEY = get_required_env("YOUTUBE_API_KEY")
-VIDEO_ID= get_required_env("YOUTUBE_VIDEO_ID")
-
-
-def get_thumbnail():
-    youtube = build('youtube', 'v3', developerKey=API_KEY)
-    response = youtube.videos().list(part='snippet', id=VIDEO_ID).execute()
-    thumbnail_url = response['items'][0]['snippet']['thumbnails']['high']['url']
-    urllib.request.urlretrieve(thumbnail_url, 'live_stream_thumbnail.jpg')
-    print('Thumbnail downloaded successfully.')
-
-get_thumbnail()
+if __name__ == '__main__':
+    VIDEO_ID = get_required_env("YOUTUBE_VIDEO_ID")
+    now = datetime.datetime.now()
+    date_time = now.strftime("%Y-%m-%d_%H:%M:%S")
+    filepath = os.path.join(os.path.dirname(__file__), f"thumbnails/{VIDEO_ID}/{date_time}.jpg")
+    get_thumbnail(VIDEO_ID, filepath)
