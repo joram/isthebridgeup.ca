@@ -5,7 +5,10 @@ on: push
 jobs:
   format-code:
     runs-on: ubuntu-latest
-
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      YOUTUBE_VIDEO_ID: ${{ variables.YOUTUBE_VIDEO_ID }}
     permissions:
       contents: write
 
