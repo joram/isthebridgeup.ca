@@ -1,6 +1,9 @@
 name: grab screenshot
 
-on: push
+on:
+  schedule:
+    - cron: '20/15 * * * *'
+
 
 jobs:
   grab-screenshot:
