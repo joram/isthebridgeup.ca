@@ -1,8 +1,8 @@
 name: grab screenshot
 
 on:
-  schedule:
-    - cron: '20/15 * * * *'
+  # schedule:
+  #   - cron: '20/15 * * * *'
 
 
 jobs:
